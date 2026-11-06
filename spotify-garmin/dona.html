@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Support the project</title>
+<style>
+  :root { --bg: #000; --card: #141414; --line: #2a2a2a; --text: #fff; --muted: #b8b8b8; --accent: #3BE477; --pp: #ffc439; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: -apple-system, system-ui, sans-serif; line-height: 1.45; }
+  main { max-width: 520px; margin: 0 auto; padding: 24px 16px 48px; }
+  h1 { font-size: 26px; margin: 8px 0 8px; }
+  h2 { font-size: 21px; margin: 0 0 10px; }
+  h3 { font-size: 17px; margin: 18px 0 8px; }
+  p, li { color: var(--muted); font-size: 16px; }
+  p { margin: 0 0 12px; }
+  ol { margin: 0 0 14px; padding-left: 22px; }
+  li { margin: 0 0 8px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px 16px; margin: 16px 0; }
+  .btn { display: block; width: 100%; border: 0; border-radius: 999px; padding: 15px 18px; font-size: 17px; font-weight: 700; text-align: center; text-decoration: none; }
+  .paypal { background: var(--pp); color: #111; }
+  .qr { display: block; width: 200px; height: 200px; margin: 14px auto 8px; background: #fff; border-radius: 12px; padding: 8px; }
+  .center { text-align: center; }
+  .copy { display: flex; align-items: center; gap: 8px; background: #000; border: 1px solid var(--line); border-radius: 10px; padding: 8px 8px 8px 12px; margin: 6px 0 12px; }
+  .copy-text { flex: 1; min-width: 0; }
+  .copy-label { font-size: 12px; color: var(--muted); display: block; }
+  .copy-value { font-family: ui-monospace, Menlo, monospace; font-size: 15px; overflow-wrap: anywhere; color: var(--text); }
+  .copy button { flex: 0 0 auto; border: 0; border-radius: 8px; background: #262626; color: var(--text); font-size: 14px; font-weight: 700; padding: 8px 12px; cursor: pointer; }
+  .note { font-size: 14px; }
+  .thanks { text-align: center; color: var(--text); font-size: 18px; margin-top: 24px; }
+</style>
+</head>
+<body>
+<main>
+  <h1 data-t="title">Support the project</h1>
+  <p data-t="intro">The app is free and has no ads. If you find it useful, you can make a donation of any amount to Filippo, who created it. Every contribution, however small, helps keep it running and improve it. Thank you!</p>
+
+  <section class="card">
+    <h2 data-t="ppTitle">With PayPal</h2>
+    <ol>
+      <li data-t="pp1">Tap the "Donate with PayPal" button below.</li>
+      <li data-t="pp2">Sign in to your PayPal account (the PayPal app opens if it is installed).</li>
+      <li data-t="pp3">Enter the amount you like.</li>
+      <li data-t="pp4">Confirm the payment.</li>
+    </ol>
+    <a class="btn paypal" href="https://www.paypal.com/qrcodes/p2pqrc/KVQVRJ9TVP8QG" target="_blank" rel="noopener" data-t="ppBtn">Donate with PayPal</a>
+    <img class="qr" src="img/qr-paypal.svg" alt="PayPal QR code" width="200" height="200">
+    <p class="note center" data-t="ppQr">On a computer? Scan this QR code with your phone camera.</p>
+  </section>
+
+  <section class="card">
+    <h2 data-t="bkTitle">By bank transfer</h2>
+
+    <h3 data-t="bkQrTitle">Quick way: QR code</h3>
+    <p data-t="bkQrText">If your banking app lets you pay a transfer by scanning a QR code, scan this code: beneficiary, IBAN and reference are filled in automatically. You only need to enter the amount.</p>
+    <img class="qr" src="img/qr-bonifico.svg" alt="SEPA transfer QR code" width="200" height="200">
+    <p class="note" data-t="bkQrNote">Not all banks offer this feature. If yours does not, use the method below.</p>
+
+    <h3 data-t="bkManTitle">Manual way</h3>
+    <ol>
+      <li data-t="bk1">Open your banking app or website and choose "New transfer" (SEPA transfer).</li>
+      <li><span data-t="bk2">In the beneficiary field, paste the name:</span>
+        <div class="copy"><div class="copy-text"><span class="copy-label" data-t="benL">Beneficiary</span><span class="copy-value" id="vBen">Filippo Picchiarelli</span></div><button type="button" data-copy="vBen" data-t="copy">Copy</button></div>
+      </li>
+      <li><span data-t="bk3">In the IBAN field, paste this code:</span>
+        <div class="copy"><div class="copy-text"><span class="copy-label">IBAN</span><span class="copy-value" id="vIban" data-raw="IT67U0366901600916766231291">IT67 U036 6901 6009 1676 6231 291</span></div><button type="button" data-copy="vIban" data-t="copy">Copy</button></div>
+      </li>
+      <li data-t="bk4">Enter the amount you like.</li>
+      <li><span data-t="bk5">In the reference (payment description), paste:</span>
+        <div class="copy"><div class="copy-text"><span class="copy-label" data-t="causeL">Reference</span><span class="copy-value" id="vCause">Donazione app Garmin</span></div><button type="button" data-copy="vCause" data-t="copy">Copy</button></div>
+      </li>
+      <li data-t="bk6">Check the details and confirm the transfer.</li>
+    </ol>
+    <p class="note" data-t="bkNote">The BIC/SWIFT code is usually not needed for euro (SEPA) transfers. Any transfer fees depend on your bank.</p>
+  </section>
+
+  <p class="thanks" data-t="thanks">Thank you so much for your support!</p>
+</main>
+<script>
+(function () {
+  var T = {
+    it: {
+      title: "Supporta il progetto",
+      intro: "L'app è gratuita e senza pubblicità. Se ti è utile, puoi fare una donazione libera a Filippo, che l'ha creata. Ogni contributo, anche piccolo, aiuta a mantenerla e migliorarla. Grazie!",
+      ppTitle: "Con PayPal",
+      pp1: "Tocca il pulsante \"Dona con PayPal\" qui sotto.",
+      pp2: "Accedi al tuo account PayPal (si apre l'app PayPal, se è installata).",
+      pp3: "Scrivi l'importo che preferisci.",
+      pp4: "Conferma il pagamento.",
+      ppBtn: "Dona con PayPal",
+      ppQr: "Sei al computer? Inquadra questo QR code con la fotocamera del telefono.",
+      bkTitle: "Con bonifico bancario",
+      bkQrTitle: "Metodo veloce: QR code",
+      bkQrText: "Se l'app della tua banca permette di fare un bonifico inquadrando un QR code, inquadra questo codice: beneficiario, IBAN e causale si compilano da soli. Ti resta solo da scrivere l'importo.",
+      bkQrNote: "Non tutte le banche hanno questa funzione. Se la tua non ce l'ha, usa il metodo qui sotto.",
+      bkManTitle: "Metodo manuale",
+      bk1: "Apri l'app o il sito della tua banca e scegli \"Nuovo bonifico\" (bonifico SEPA).",
+      bk2: "Nel campo del beneficiario incolla il nome:",
+      bk3: "Nel campo IBAN incolla questo codice:",
+      bk4: "Scrivi l'importo che preferisci.",
+      bk5: "Nella causale incolla:",
+      bk6: "Controlla i dati e conferma il bonifico.",
+      bkNote: "Il codice BIC/SWIFT di solito non serve per i bonifici in euro (SEPA). Eventuali costi del bonifico dipendono dalla tua banca.",
+      thanks: "Grazie di cuore per il supporto!",
+      benL: "Beneficiario", causeL: "Causale", copy: "Copia", copied: "Copiato"
+    },
+    es: {
+      title: "Apoya el proyecto",
+      intro: "La app es gratuita y no tiene anuncios. Si te resulta útil, puedes hacer una donación de la cantidad que quieras a Filippo, que la ha creado. Cada aportación, por pequeña que sea, ayuda a mantenerla y mejorarla. ¡Gracias!",
+      ppTitle: "Con PayPal",
+      pp1: "Toca el botón \"Donar con PayPal\" de abajo.",
+      pp2: "Inicia sesión en tu cuenta de PayPal (se abre la app de PayPal si está instalada).",
+      pp3: "Escribe la cantidad que prefieras.",
+      pp4: "Confirma el pago.",
+      ppBtn: "Donar con PayPal",
+      ppQr: "¿Estás en un ordenador? Escanea este código QR con la cámara del teléfono.",
+      bkTitle: "Por transferencia bancaria",
+      bkQrTitle: "Forma rápida: código QR",
+      bkQrText: "Si la app de tu banco permite pagar una transferencia escaneando un código QR, escanea este código: el beneficiario, el IBAN y el concepto se rellenan solos. Solo tienes que escribir la cantidad.",
+      bkQrNote: "No todos los bancos ofrecen esta función. Si el tuyo no la tiene, usa el método de abajo.",
+      bkManTitle: "Forma manual",
+      bk1: "Abre la app o la web de tu banco y elige \"Nueva transferencia\" (transferencia SEPA).",
+      bk2: "En el campo del beneficiario, pega el nombre:",
+      bk3: "En el campo IBAN, pega este código:",
+      bk4: "Escribe la cantidad que prefieras.",
+      bk5: "En el concepto, pega:",
+      bk6: "Revisa los datos y confirma la transferencia.",
+      bkNote: "El código BIC/SWIFT normalmente no es necesario para transferencias en euros (SEPA). Las posibles comisiones dependen de tu banco.",
+      thanks: "¡Muchas gracias por tu apoyo!",
+      benL: "Beneficiario", causeL: "Concepto", copy: "Copiar", copied: "Copiado"
+    },
+    fr: {
+      title: "Soutenir le projet",
+      intro: "L'app est gratuite et sans publicité. Si elle vous est utile, vous pouvez faire un don du montant de votre choix à Filippo, qui l'a créée. Chaque contribution, même petite, aide à la maintenir et à l'améliorer. Merci !",
+      ppTitle: "Avec PayPal",
+      pp1: "Touchez le bouton « Faire un don avec PayPal » ci-dessous.",
+      pp2: "Connectez-vous à votre compte PayPal (l'app PayPal s'ouvre si elle est installée).",
+      pp3: "Saisissez le montant de votre choix.",
+      pp4: "Confirmez le paiement.",
+      ppBtn: "Faire un don avec PayPal",
+      ppQr: "Sur un ordinateur ? Scannez ce QR code avec l'appareil photo de votre téléphone.",
+      bkTitle: "Par virement bancaire",
+      bkQrTitle: "Méthode rapide : QR code",
+      bkQrText: "Si l'app de votre banque permet de payer un virement en scannant un QR code, scannez ce code : le bénéficiaire, l'IBAN et le motif se remplissent automatiquement. Il ne vous reste qu'à saisir le montant.",
+      bkQrNote: "Toutes les banques ne proposent pas cette fonction. Si ce n'est pas le cas de la vôtre, utilisez la méthode ci-dessous.",
+      bkManTitle: "Méthode manuelle",
+      bk1: "Ouvrez l'app ou le site de votre banque et choisissez « Nouveau virement » (virement SEPA).",
+      bk2: "Dans le champ du bénéficiaire, collez le nom :",
+      bk3: "Dans le champ IBAN, collez ce code :",
+      bk4: "Saisissez le montant de votre choix.",
+      bk5: "Dans le motif du virement, collez :",
+      bk6: "Vérifiez les informations et confirmez le virement.",
+      bkNote: "Le code BIC/SWIFT n'est généralement pas nécessaire pour les virements en euros (SEPA). Les éventuels frais dépendent de votre banque.",
+      thanks: "Merci beaucoup pour votre soutien !",
+      benL: "Bénéficiaire", causeL: "Motif", copy: "Copier", copied: "Copié"
+    },
+    de: {
+      title: "Projekt unterstützen",
+      intro: "Die App ist kostenlos und werbefrei. Wenn sie dir nützt, kannst du Filippo, der sie entwickelt hat, einen Betrag deiner Wahl spenden. Jeder Beitrag, auch ein kleiner, hilft, sie zu pflegen und zu verbessern. Danke!",
+      ppTitle: "Mit PayPal",
+      pp1: "Tippe unten auf „Mit PayPal spenden“.",
+      pp2: "Melde dich bei deinem PayPal-Konto an (die PayPal-App öffnet sich, wenn sie installiert ist).",
+      pp3: "Gib den gewünschten Betrag ein.",
+      pp4: "Bestätige die Zahlung.",
+      ppBtn: "Mit PayPal spenden",
+      ppQr: "Am Computer? Scanne diesen QR-Code mit der Kamera deines Telefons.",
+      bkTitle: "Per Banküberweisung",
+      bkQrTitle: "Schnell: QR-Code",
+      bkQrText: "Wenn deine Banking-App Überweisungen per QR-Code unterstützt, scanne diesen Code: Empfänger, IBAN und Verwendungszweck werden automatisch ausgefüllt. Du musst nur noch den Betrag eingeben.",
+      bkQrNote: "Nicht alle Banken bieten diese Funktion. Falls deine sie nicht hat, nutze die Methode unten.",
+      bkManTitle: "Manuell",
+      bk1: "Öffne die App oder Website deiner Bank und wähle „Neue Überweisung“ (SEPA-Überweisung).",
+      bk2: "Füge im Feld „Empfänger“ den Namen ein:",
+      bk3: "Füge im Feld „IBAN“ diesen Code ein:",
+      bk4: "Gib den gewünschten Betrag ein.",
+      bk5: "Füge als Verwendungszweck ein:",
+      bk6: "Prüfe die Angaben und bestätige die Überweisung.",
+      bkNote: "Der BIC/SWIFT-Code wird für Euro-Überweisungen (SEPA) meist nicht benötigt. Eventuelle Gebühren hängen von deiner Bank ab.",
+      thanks: "Vielen Dank für deine Unterstützung!",
+      benL: "Empfänger", causeL: "Verwendungszweck", copy: "Kopieren", copied: "Kopiert"
+    },
+    pt: {
+      title: "Apoie o projeto",
+      intro: "O app é gratuito e sem anúncios. Se for útil para você, pode fazer uma doação do valor que quiser ao Filippo, que o criou. Cada contribuição, por menor que seja, ajuda a mantê-lo e melhorá-lo. Obrigado!",
+      ppTitle: "Com PayPal",
+      pp1: "Toque no botão \"Doar com PayPal\" abaixo.",
+      pp2: "Entre na sua conta PayPal (o app do PayPal abre, se estiver instalado).",
+      pp3: "Digite o valor que preferir.",
+      pp4: "Confirme o pagamento.",
+      ppBtn: "Doar com PayPal",
+      ppQr: "Está em um computador? Escaneie este código QR com a câmera do telefone.",
+      bkTitle: "Por transferência bancária",
+      bkQrTitle: "Forma rápida: código QR",
+      bkQrText: "Se o app do seu banco permite pagar uma transferência lendo um código QR, escaneie este código: o beneficiário, o IBAN e a descrição são preenchidos automaticamente. Só falta digitar o valor.",
+      bkQrNote: "Nem todos os bancos oferecem esta função. Se o seu não oferece, use o método abaixo.",
+      bkManTitle: "Forma manual",
+      bk1: "Abra o app ou o site do seu banco e escolha \"Nova transferência\" (transferência SEPA).",
+      bk2: "No campo do beneficiário, cole o nome:",
+      bk3: "No campo IBAN, cole este código:",
+      bk4: "Digite o valor que preferir.",
+      bk5: "Na descrição, cole:",
+      bk6: "Verifique os dados e confirme a transferência.",
+      bkNote: "O código BIC/SWIFT normalmente não é necessário para transferências em euros (SEPA). Eventuais taxas dependem do seu banco.",
+      thanks: "Muito obrigado pelo seu apoio!",
+      benL: "Beneficiário", causeL: "Descrição", copy: "Copiar", copied: "Copiado"
+    },
+    nl: {
+      title: "Steun het project",
+      intro: "De app is gratis en zonder reclame. Vind je hem nuttig? Dan kun je Filippo, die hem heeft gemaakt, een bedrag naar keuze doneren. Elke bijdrage, hoe klein ook, helpt om de app te onderhouden en te verbeteren. Bedankt!",
+      ppTitle: "Met PayPal",
+      pp1: "Tik hieronder op \"Doneren met PayPal\".",
+      pp2: "Log in op je PayPal-account (de PayPal-app opent als die geïnstalleerd is).",
+      pp3: "Vul het bedrag in dat je wilt geven.",
+      pp4: "Bevestig de betaling.",
+      ppBtn: "Doneren met PayPal",
+      ppQr: "Zit je achter een computer? Scan deze QR-code met de camera van je telefoon.",
+      bkTitle: "Met een bankoverboeking",
+      bkQrTitle: "Snel: QR-code",
+      bkQrText: "Kun je in je bank-app een overboeking betalen door een QR-code te scannen? Scan dan deze code: begunstigde, IBAN en omschrijving worden automatisch ingevuld. Je hoeft alleen nog het bedrag in te vullen.",
+      bkQrNote: "Niet alle banken hebben deze functie. Heeft jouw bank die niet, gebruik dan de methode hieronder.",
+      bkManTitle: "Handmatig",
+      bk1: "Open de app of website van je bank en kies \"Nieuwe overboeking\" (SEPA-overboeking).",
+      bk2: "Plak in het veld begunstigde de naam:",
+      bk3: "Plak in het veld IBAN deze code:",
+      bk4: "Vul het bedrag in dat je wilt geven.",
+      bk5: "Plak als omschrijving:",
+      bk6: "Controleer de gegevens en bevestig de overboeking.",
+      bkNote: "De BIC/SWIFT-code is voor overboekingen in euro (SEPA) meestal niet nodig. Eventuele kosten hangen af van je bank.",
+      thanks: "Heel erg bedankt voor je steun!",
+      benL: "Begunstigde", causeL: "Omschrijving", copy: "Kopiëren", copied: "Gekopieerd"
+    }
+  };
+  var EN = { copy: "Copy", copied: "Copied" };
+
+  var lang = (navigator.language || "en").slice(0, 2).toLowerCase();
+  var L = T[lang] || {};
+  function t(key) { return L[key] || EN[key] || ""; }
+  if (T[lang]) {
+    document.documentElement.lang = lang;
+    document.title = L.title;
+    var nodes = document.querySelectorAll("[data-t]");
+    for (var i = 0; i < nodes.length; i++) {
+      var k = nodes[i].getAttribute("data-t");
+      if (L[k]) { nodes[i].textContent = L[k]; }
+    }
+  }
+
+  function fallback(text) {
+    var ta = document.createElement("textarea");
+    ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "absolute"; ta.style.left = "-9999px";
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+  function copyText(text, button) {
+    function done() {
+      var old = button.textContent;
+      button.textContent = t("copied");
+      setTimeout(function () { button.textContent = old; }, 1500);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { fallback(text); done(); });
+    } else { fallback(text); done(); }
+  }
+  var buttons = document.querySelectorAll("[data-copy]");
+  for (var j = 0; j < buttons.length; j++) {
+    buttons[j].addEventListener("click", function () {
+      var el = document.getElementById(this.getAttribute("data-copy"));
+      copyText(el.getAttribute("data-raw") || el.textContent, this);
+    });
+  }
+})();
+</script>
+</body>
+</html>

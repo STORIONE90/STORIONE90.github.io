@@ -12,6 +12,7 @@
   .dot { width: 64px; height: 64px; border-radius: 50%; background: #3BE477; margin: 0 auto 24px; }
   h1 { font-size: 28px; margin: 0 0 12px; }
   p { color: #b8b8b8; font-size: 18px; line-height: 1.4; margin: 0; }
+  a.support { display: inline-block; margin-top: 28px; color: #3BE477; font-size: 16px; text-decoration: none; border: 1px solid #2a2a2a; border-radius: 999px; padding: 10px 16px; }
 </style>
 </head>
 <body>
@@ -19,16 +20,17 @@
   <div class="dot"></div>
   <h1 id="t">Sign-in complete</h1>
   <p id="s">You can close this page and go back to your watch.</p>
+  <a class="support" id="d" href="dona">Like the app? Support the project</a>
 </main>
 <script>
   (function () {
     var texts = {
-      it: ["Accesso completato", "Puoi chiudere questa pagina e tornare all'orologio."],
-      es: ["Acceso completado", "Puedes cerrar esta página y volver al reloj."],
-      fr: ["Connexion réussie", "Vous pouvez fermer cette page et revenir à la montre."],
-      de: ["Anmeldung abgeschlossen", "Du kannst diese Seite schließen und zur Uhr zurückkehren."],
-      pt: ["Acesso concluído", "Pode fechar esta página e voltar ao relógio."],
-      nl: ["Inloggen voltooid", "Je kunt deze pagina sluiten en teruggaan naar je horloge."]
+      it: ["Accesso completato", "Puoi chiudere questa pagina e tornare all'orologio.", "Ti piace l'app? Supporta il progetto"],
+      es: ["Acceso completado", "Puedes cerrar esta página y volver al reloj.", "¿Te gusta la app? Apoya el proyecto"],
+      fr: ["Connexion réussie", "Vous pouvez fermer cette page et revenir à la montre.", "Vous aimez l'app\u00a0? Soutenez le projet"],
+      de: ["Anmeldung abgeschlossen", "Du kannst diese Seite schließen und zur Uhr zurückkehren.", "Gefällt dir die App? Unterstütze das Projekt"],
+      pt: ["Acesso concluído", "Você pode fechar esta página e voltar ao relógio.", "Gostou do app? Apoie o projeto"],
+      nl: ["Inloggen voltooid", "Je kunt deze pagina sluiten en teruggaan naar je horloge.", "Vind je de app leuk? Steun het project"]
     };
     var lang = (navigator.language || "en").slice(0, 2).toLowerCase();
     var t = texts[lang];
@@ -36,6 +38,7 @@
       document.documentElement.lang = lang;
       document.getElementById("t").textContent = t[0];
       document.getElementById("s").textContent = t[1];
+      document.getElementById("d").textContent = t[2];
     }
   })();
 </script>
