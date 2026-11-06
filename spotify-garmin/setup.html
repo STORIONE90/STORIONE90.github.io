@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Connect your watch to Spotify</title>
+<style>
+  :root { --bg: #000; --card: #141414; --line: #2a2a2a; --text: #fff; --muted: #b8b8b8; --accent: #3BE477; --warn: #FFB020; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: -apple-system, system-ui, sans-serif; line-height: 1.45; }
+  main { max-width: 520px; margin: 0 auto; padding: 24px 16px 48px; }
+  h1 { font-size: 26px; margin: 8px 0 8px; }
+  h2 { font-size: 20px; margin: 0 0 6px; }
+  p { margin: 0 0 12px; color: var(--muted); font-size: 16px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px 16px; margin: 16px 0; }
+  .btn { display: block; width: 100%; border: 0; border-radius: 999px; padding: 15px 18px; font-size: 17px; font-weight: 700; text-align: center; text-decoration: none; cursor: pointer; }
+  .primary { background: var(--accent); color: #000; }
+  .secondary { background: #262626; color: var(--text); }
+  .step { display: flex; gap: 12px; margin: 16px 0 6px; }
+  .num { flex: 0 0 28px; height: 28px; border-radius: 50%; background: var(--accent); color: #000; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+  .step-body { flex: 1; min-width: 0; }
+  .step-body p { margin-bottom: 8px; }
+  .copy { display: flex; align-items: center; gap: 8px; background: #000; border: 1px solid var(--line); border-radius: 10px; padding: 8px 8px 8px 12px; margin: 6px 0; }
+  .copy-label { font-size: 12px; color: var(--muted); display: block; }
+  .copy-value { font-family: ui-monospace, Menlo, monospace; font-size: 14px; overflow-wrap: anywhere; color: var(--text); }
+  .copy-text { flex: 1; min-width: 0; }
+  .copy button { flex: 0 0 auto; border: 0; border-radius: 8px; background: #262626; color: var(--text); font-size: 14px; font-weight: 700; padding: 8px 12px; cursor: pointer; }
+  label { display: block; font-size: 14px; color: var(--muted); margin: 6px 0; }
+  input { width: 100%; font-size: 17px; padding: 14px 12px; border-radius: 10px; border: 1px solid var(--line); background: #000; color: var(--text); font-family: ui-monospace, Menlo, monospace; }
+  .msg { color: var(--warn); font-size: 15px; min-height: 22px; margin: 8px 0; }
+  .note { font-size: 14px; }
+  .hidden { display: none; }
+  .divider { text-align: center; color: var(--muted); font-size: 14px; margin: 8px 0; }
+</style>
+</head>
+<body>
+<main>
+  <h1 data-t="title">Connect your watch to Spotify</h1>
+  <p data-t="intro">You only need to do this once. Spotify Premium is required.</p>
+  <p id="notFromWatch" class="msg hidden" data-t="notFromWatch">Open this page from the watch: open the app and press START.</p>
+
+  <section class="card">
+    <h2 data-t="invTitle">I have an invite</h2>
+    <p data-t="invText">If the creator of the app added your Spotify account (up to 5 people), just tap here.</p>
+    <button id="invBtn" class="btn primary" type="button" data-t="invBtn">Continue with the invite</button>
+  </section>
+
+  <div class="divider" data-t="or">or</div>
+
+  <section class="card">
+    <h2 data-t="ownTitle">Use your own Spotify app</h2>
+    <p data-t="ownText">Free, about 2-3 minutes. Follow the 3 steps.</p>
+
+    <div class="step"><div class="num">1</div><div class="step-body">
+      <p data-t="s1">Open Spotify for Developers and sign in with your Spotify account. If asked, accept the terms.</p>
+      <a class="btn secondary" href="https://developer.spotify.com/dashboard/create" target="_blank" rel="noopener" data-t="s1btn">Open Spotify for Developers</a>
+      <p class="note" data-t="s1note">If it does not open, copy developer.spotify.com/dashboard/create into Safari or Chrome.</p>
+    </div></div>
+
+    <div class="step"><div class="num">2</div><div class="step-body">
+      <p data-t="s2">In "Create app", fill in the form by copying these values:</p>
+      <div class="copy"><div class="copy-text"><span class="copy-label" data-t="nameL">App name</span><span class="copy-value" id="vName">Garmin Remote</span></div><button type="button" data-copy="vName" data-t="copy">Copy</button></div>
+      <div class="copy"><div class="copy-text"><span class="copy-label" data-t="descL">App description</span><span class="copy-value" id="vDesc">Remote for my Garmin watch</span></div><button type="button" data-copy="vDesc" data-t="copy">Copy</button></div>
+      <div class="copy"><div class="copy-text"><span class="copy-label" data-t="redirL">Redirect URI (then tap "Add")</span><span class="copy-value" id="vRedir">https://storione90.github.io/spotify-garmin/callback</span></div><button type="button" data-copy="vRedir" data-t="copy">Copy</button></div>
+      <p data-t="s2b">Tick "Web API", accept the terms and tap "Save".</p>
+    </div></div>
+
+    <div class="step"><div class="num">3</div><div class="step-body">
+      <p data-t="s3">Open "Settings" of the app you just created, copy the "Client ID" and paste it here:</p>
+      <label for="cid" data-t="cidL">Client ID</label>
+      <input id="cid" type="text" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="0123456789abcdef…">
+      <div id="msg" class="msg" role="status"></div>
+      <button id="ownBtn" class="btn primary" type="button" data-t="go">Continue</button>
+      <p class="note" data-t="help">If Spotify then shows an error, open "User Management" in your app and add your own Spotify email.</p>
+    </div></div>
+  </section>
+</main>
+<script>
+(function () {
+  var REDIRECT = "https://storione90.github.io/spotify-garmin/callback";
+  var SCOPES = "playlist-read-private playlist-read-collaborative user-read-playback-state user-modify-playback-state user-read-currently-playing";
+
+  var T = {
+    it: {
+      title: "Collega l'orologio a Spotify", intro: "Va fatto una volta sola. Serve Spotify Premium.",
+      notFromWatch: "Apri questa pagina dall'orologio: apri l'app e premi START.",
+      invTitle: "Ho un invito", invText: "Se il creatore dell'app ha aggiunto il tuo account Spotify (massimo 5 persone), tocca qui.",
+      invBtn: "Continua con l'invito", or: "oppure",
+      ownTitle: "Usa la tua app Spotify", ownText: "Gratis, circa 2-3 minuti. Segui i 3 passi.",
+      s1: "Apri Spotify for Developers e accedi con il tuo account Spotify. Se richiesto, accetta i termini.",
+      s1btn: "Apri Spotify for Developers", s1note: "Se non si apre, copia developer.spotify.com/dashboard/create in Safari o Chrome.",
+      s2: "In \"Create app\" compila il modulo copiando questi valori:", nameL: "App name", descL: "App description",
+      redirL: "Redirect URI (poi tocca \"Add\")", s2b: "Spunta \"Web API\", accetta i termini e tocca \"Save\".",
+      s3: "Apri \"Settings\" dell'app appena creata, copia il \"Client ID\" e incollalo qui:", cidL: "Client ID",
+      go: "Continua", copy: "Copia", copied: "Copiato",
+      bad: "Il Client ID deve avere 32 caratteri (lettere da a a f e numeri). Controlla di averlo copiato tutto.",
+      help: "Se poi Spotify mostra un errore, apri \"User Management\" nella tua app e aggiungi la tua email Spotify."
+    },
+    es: {
+      title: "Conecta el reloj a Spotify", intro: "Solo hay que hacerlo una vez. Se necesita Spotify Premium.",
+      notFromWatch: "Abre esta página desde el reloj: abre la app y pulsa START.",
+      invTitle: "Tengo una invitación", invText: "Si el creador de la app añadió tu cuenta de Spotify (máximo 5 personas), toca aquí.",
+      invBtn: "Continuar con la invitación", or: "o",
+      ownTitle: "Usa tu propia app de Spotify", ownText: "Gratis, unos 2-3 minutos. Sigue los 3 pasos.",
+      s1: "Abre Spotify for Developers e inicia sesión con tu cuenta de Spotify. Si te lo pide, acepta los términos.",
+      s1btn: "Abrir Spotify for Developers", s1note: "Si no se abre, copia developer.spotify.com/dashboard/create en Safari o Chrome.",
+      s2: "En \"Create app\" rellena el formulario copiando estos valores:", nameL: "App name", descL: "App description",
+      redirL: "Redirect URI (luego toca \"Add\")", s2b: "Marca \"Web API\", acepta los términos y toca \"Save\".",
+      s3: "Abre \"Settings\" de la app que acabas de crear, copia el \"Client ID\" y pégalo aquí:", cidL: "Client ID",
+      go: "Continuar", copy: "Copiar", copied: "Copiado",
+      bad: "El Client ID debe tener 32 caracteres (letras de la a a la f y números). Comprueba que lo has copiado entero.",
+      help: "Si Spotify muestra un error, abre \"User Management\" en tu app y añade tu email de Spotify."
+    },
+    fr: {
+      title: "Connectez la montre à Spotify", intro: "À faire une seule fois. Spotify Premium est nécessaire.",
+      notFromWatch: "Ouvrez cette page depuis la montre : ouvrez l'app et appuyez sur START.",
+      invTitle: "J'ai une invitation", invText: "Si le créateur de l'app a ajouté votre compte Spotify (5 personnes maximum), touchez ici.",
+      invBtn: "Continuer avec l'invitation", or: "ou",
+      ownTitle: "Utilisez votre propre app Spotify", ownText: "Gratuit, environ 2-3 minutes. Suivez les 3 étapes.",
+      s1: "Ouvrez Spotify for Developers et connectez-vous avec votre compte Spotify. Si demandé, acceptez les conditions.",
+      s1btn: "Ouvrir Spotify for Developers", s1note: "Si rien ne s'ouvre, copiez developer.spotify.com/dashboard/create dans Safari ou Chrome.",
+      s2: "Dans \"Create app\", remplissez le formulaire en copiant ces valeurs :", nameL: "App name", descL: "App description",
+      redirL: "Redirect URI (puis touchez \"Add\")", s2b: "Cochez \"Web API\", acceptez les conditions et touchez \"Save\".",
+      s3: "Ouvrez \"Settings\" de l'app créée, copiez le \"Client ID\" et collez-le ici :", cidL: "Client ID",
+      go: "Continuer", copy: "Copier", copied: "Copié",
+      bad: "Le Client ID doit contenir 32 caractères (lettres de a à f et chiffres). Vérifiez qu'il est copié en entier.",
+      help: "Si Spotify affiche une erreur, ouvrez \"User Management\" dans votre app et ajoutez votre e-mail Spotify."
+    },
+    de: {
+      title: "Uhr mit Spotify verbinden", intro: "Nur einmal nötig. Spotify Premium ist erforderlich.",
+      notFromWatch: "Öffne diese Seite über die Uhr: App öffnen und START drücken.",
+      invTitle: "Ich habe eine Einladung", invText: "Wenn der Ersteller der App dein Spotify-Konto hinzugefügt hat (maximal 5 Personen), tippe hier.",
+      invBtn: "Mit Einladung fortfahren", or: "oder",
+      ownTitle: "Eigene Spotify-App verwenden", ownText: "Kostenlos, etwa 2-3 Minuten. Folge den 3 Schritten.",
+      s1: "Öffne Spotify for Developers und melde dich mit deinem Spotify-Konto an. Falls gefragt, akzeptiere die Bedingungen.",
+      s1btn: "Spotify for Developers öffnen", s1note: "Falls sich nichts öffnet, kopiere developer.spotify.com/dashboard/create in Safari oder Chrome.",
+      s2: "Fülle unter \"Create app\" das Formular mit diesen Werten aus:", nameL: "App name", descL: "App description",
+      redirL: "Redirect URI (dann \"Add\" tippen)", s2b: "\"Web API\" ankreuzen, Bedingungen akzeptieren und \"Save\" tippen.",
+      s3: "Öffne \"Settings\" der neuen App, kopiere die \"Client ID\" und füge sie hier ein:", cidL: "Client ID",
+      go: "Weiter", copy: "Kopieren", copied: "Kopiert",
+      bad: "Die Client ID muss 32 Zeichen haben (Buchstaben a bis f und Ziffern). Prüfe, ob sie vollständig kopiert ist.",
+      help: "Zeigt Spotify danach einen Fehler, öffne \"User Management\" in deiner App und füge deine Spotify-E-Mail hinzu."
+    },
+    pt: {
+      title: "Ligue o relógio ao Spotify", intro: "Só é preciso fazer isto uma vez. É necessário o Spotify Premium.",
+      notFromWatch: "Abra esta página a partir do relógio: abra a app e pressione START.",
+      invTitle: "Tenho um convite", invText: "Se o criador da app adicionou a sua conta Spotify (máximo 5 pessoas), toque aqui.",
+      invBtn: "Continuar com o convite", or: "ou",
+      ownTitle: "Use a sua própria app Spotify", ownText: "Grátis, cerca de 2-3 minutos. Siga os 3 passos.",
+      s1: "Abra o Spotify for Developers e inicie sessão com a sua conta Spotify. Se pedido, aceite os termos.",
+      s1btn: "Abrir Spotify for Developers", s1note: "Se não abrir, copie developer.spotify.com/dashboard/create no Safari ou Chrome.",
+      s2: "Em \"Create app\" preencha o formulário copiando estes valores:", nameL: "App name", descL: "App description",
+      redirL: "Redirect URI (depois toque em \"Add\")", s2b: "Marque \"Web API\", aceite os termos e toque em \"Save\".",
+      s3: "Abra \"Settings\" da app criada, copie o \"Client ID\" e cole-o aqui:", cidL: "Client ID",
+      go: "Continuar", copy: "Copiar", copied: "Copiado",
+      bad: "O Client ID deve ter 32 caracteres (letras de a a f e números). Verifique se o copiou completo.",
+      help: "Se o Spotify mostrar um erro, abra \"User Management\" na sua app e adicione o seu email Spotify."
+    },
+    nl: {
+      title: "Koppel je horloge aan Spotify", intro: "Dit hoef je maar één keer te doen. Spotify Premium is nodig.",
+      notFromWatch: "Open deze pagina vanaf het horloge: open de app en druk op START.",
+      invTitle: "Ik heb een uitnodiging", invText: "Heeft de maker van de app je Spotify-account toegevoegd (maximaal 5 personen)? Tik dan hier.",
+      invBtn: "Doorgaan met uitnodiging", or: "of",
+      ownTitle: "Gebruik je eigen Spotify-app", ownText: "Gratis, ongeveer 2-3 minuten. Volg de 3 stappen.",
+      s1: "Open Spotify for Developers en log in met je Spotify-account. Accepteer de voorwaarden als dat gevraagd wordt.",
+      s1btn: "Spotify for Developers openen", s1note: "Opent er niets? Kopieer developer.spotify.com/dashboard/create naar Safari of Chrome.",
+      s2: "Vul bij \"Create app\" het formulier in met deze waarden:", nameL: "App name", descL: "App description",
+      redirL: "Redirect URI (tik daarna op \"Add\")", s2b: "Vink \"Web API\" aan, accepteer de voorwaarden en tik op \"Save\".",
+      s3: "Open \"Settings\" van de nieuwe app, kopieer de \"Client ID\" en plak hem hier:", cidL: "Client ID",
+      go: "Doorgaan", copy: "Kopiëren", copied: "Gekopieerd",
+      bad: "De Client ID moet 32 tekens hebben (letters a tot f en cijfers). Controleer of je hem helemaal hebt gekopieerd.",
+      help: "Toont Spotify daarna een fout? Open \"User Management\" in je app en voeg je eigen Spotify-e-mail toe."
+    }
+  };
+  var EN = { copy: "Copy", copied: "Copied",
+    bad: "The Client ID must be 32 characters (letters a to f and numbers). Check that you copied all of it." };
+
+  var lang = (navigator.language || "en").slice(0, 2).toLowerCase();
+  var L = T[lang] || {};
+  function t(key) { return L[key] || EN[key] || ""; }
+  if (T[lang]) {
+    document.documentElement.lang = lang;
+    document.title = L.title;
+    var nodes = document.querySelectorAll("[data-t]");
+    for (var i = 0; i < nodes.length; i++) {
+      var k = nodes[i].getAttribute("data-t");
+      if (L[k]) { nodes[i].textContent = L[k]; }
+    }
+  }
+
+  var q = new URLSearchParams(location.search);
+  var cc = q.get("cc");
+  var inv = q.get("inv");
+  if (!cc) { document.getElementById("notFromWatch").classList.remove("hidden"); }
+
+  var input = document.getElementById("cid");
+  var msg = document.getElementById("msg");
+  try { var saved = localStorage.getItem("cid"); if (saved) { input.value = saved; } } catch (e) {}
+
+  function login(clientId) {
+    if (!cc) { document.getElementById("notFromWatch").classList.remove("hidden"); return; }
+    var p = new URLSearchParams({
+      client_id: clientId, response_type: "code", redirect_uri: REDIRECT, scope: SCOPES,
+      code_challenge_method: "S256", code_challenge: cc, state: clientId
+    });
+    location.href = "https://accounts.spotify.com/authorize?" + p.toString();
+  }
+
+  document.getElementById("invBtn").addEventListener("click", function () {
+    if (inv) { login(inv); }
+  });
+  if (!inv) { document.getElementById("invBtn").disabled = true; }
+
+  document.getElementById("ownBtn").addEventListener("click", function () {
+    var v = (input.value || "").replace(/\s+/g, "").toLowerCase();
+    if (!/^[0-9a-f]{32}$/.test(v)) { msg.textContent = t("bad"); return; }
+    msg.textContent = "";
+    try { localStorage.setItem("cid", v); } catch (e) {}
+    login(v);
+  });
+
+  function copyText(text, button) {
+    function done() {
+      var old = button.textContent;
+      button.textContent = t("copied");
+      setTimeout(function () { button.textContent = old; }, 1500);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { fallback(text); done(); });
+    } else { fallback(text); done(); }
+  }
+  function fallback(text) {
+    var ta = document.createElement("textarea");
+    ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "absolute"; ta.style.left = "-9999px";
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+  var buttons = document.querySelectorAll("[data-copy]");
+  for (var j = 0; j < buttons.length; j++) {
+    buttons[j].addEventListener("click", function () {
+      copyText(document.getElementById(this.getAttribute("data-copy")).textContent, this);
+    });
+  }
+})();
+</script>
+</body>
+</html>
