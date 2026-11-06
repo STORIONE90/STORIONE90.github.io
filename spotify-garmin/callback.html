@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="it">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Accesso completato</title>
+<title>Remote for Spotify</title>
 <style>
   body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
          background: #000; color: #fff; font-family: -apple-system, system-ui, sans-serif; text-align: center; }
@@ -17,8 +17,27 @@
 <body>
 <main>
   <div class="dot"></div>
-  <h1>Accesso completato</h1>
-  <p>Puoi chiudere questa pagina e tornare all'orologio.</p>
+  <h1 id="t">Sign-in complete</h1>
+  <p id="s">You can close this page and go back to your watch.</p>
 </main>
+<script>
+  (function () {
+    var texts = {
+      it: ["Accesso completato", "Puoi chiudere questa pagina e tornare all'orologio."],
+      es: ["Acceso completado", "Puedes cerrar esta página y volver al reloj."],
+      fr: ["Connexion réussie", "Vous pouvez fermer cette page et revenir à la montre."],
+      de: ["Anmeldung abgeschlossen", "Du kannst diese Seite schließen und zur Uhr zurückkehren."],
+      pt: ["Acesso concluído", "Pode fechar esta página e voltar ao relógio."],
+      nl: ["Inloggen voltooid", "Je kunt deze pagina sluiten en teruggaan naar je horloge."]
+    };
+    var lang = (navigator.language || "en").slice(0, 2).toLowerCase();
+    var t = texts[lang];
+    if (t) {
+      document.documentElement.lang = lang;
+      document.getElementById("t").textContent = t[0];
+      document.getElementById("s").textContent = t[1];
+    }
+  })();
+</script>
 </body>
 </html>
